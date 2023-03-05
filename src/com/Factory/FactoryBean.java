@@ -1,5 +1,7 @@
 package src.com.Factory;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import src.com.wzx.Monster;
 
 import java.util.HashMap;
@@ -16,15 +18,24 @@ public class FactoryBean implements org.springframework.beans.factory.FactoryBea
 
     {
         monsterMap = new HashMap<>();
-        monsterMap.put("monster01",new Monster(100,"1","2"));
+        monsterMap.put("monster1",new Monster(100,"1","2"));
     }
     @Override
     public Monster getObject() throws Exception {
-        return null;
+        return monsterMap.get(key);
     }
 
     @Override
     public Class<?> getObjectType() {
-        return null;
+        return Monster.class;
+    }
+    public boolean isSingleton(){
+        return true;
+    }
+
+    public static void main(String[] args) {
+        ApplicationContext ioc = new ClassPathXmlApplicationContext("beans.xml");
+        Monster monsterBEAN = ioc.getBean("monsterBEAN", Monster.class);
+        System.out.println(monsterBEAN);
     }
 }
