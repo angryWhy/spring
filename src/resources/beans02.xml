@@ -10,4 +10,12 @@
 <bean class="src.com.beanLife.House" id="beanProcessor">
 <property name="name" value="${name}"/>
 </bean>
+    <bean class="src.com.auto.orderdao" id="orderdao"></bean>
+<!--    autowire中的byType,通过类型来自动完成赋值/引用，给对象的属性自动完成赋值-->
+<!--    去容器里面找有没有这个类型的对象（orderdao），如果有自动装配-->
+<!--    按照类型，不能有两个-->
+    如果设置是byName，spring容器创建好，会按照set方法来寻找
+    setOrderdao来寻找id=orderdao的对象
+    <bean class="src.com.auto.orderService" id="orderService" autowire="byType"></bean>
+    <bean class="src.com.web.orderAction" id="action" autowire="byType"></bean>
 </beans>
