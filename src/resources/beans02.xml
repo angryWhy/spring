@@ -24,5 +24,13 @@
     含义是当spring容器创建/初始化的时候，就会扫描src.com.wzx下的所有带注解的类
 <!--    @Contoller/service/Respository/Component,将类实例化，放到IOC容器中-->
 <!--    如果要加上子包,换上通配符*，src.com.wzx.*-->
-    <context:component-scan base-package="src.com.wzx"/>
+<!--    只扫描User打头的类-->
+    <context:component-scan base-package="src.com.wzx" resource-pattern="User*.class" use-default-filters="false">
+        <!--    排除子包某种类型的注解的类，有Monster的注解的类就排除-->
+        <context:exclude type="monster" expression="sr.com.wzx.Monster" />
+<!--        过滤只包含的，但一定要 use-default-filters=“false”-->
+        <context:include-filter type="monster" expression="sr.com.wzx.Monster"/>
+    </context:component-scan>
+
+
 </beans>
