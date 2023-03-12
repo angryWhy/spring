@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+<bean class="src.com.beanLife.House" id="house" init-method="init" destroy-method="destory">
+    <property name="name" value="hahha"/>
+</bean>
+    <context:property-placeholder location="classpath:my.properties"/>
+<bean class="src.com.beanLife.House" id="beanProcessor">
+<property name="name" value="${name}"/>
+</bean>
+    <bean class="src.com.auto.orderdao" id="orderdao"></bean>
+<!--    autowire中的byType,通过类型来自动完成赋值/引用，给对象的属性自动完成赋值-->
+<!--    去容器里面找有没有这个类型的对象（orderdao），如果有自动装配-->
+<!--    按照类型，不能有两个-->
+<!--    如果设置是byName，spring容器创建好，会按照set方法来寻找-->
+<!--    setOrderdao来寻找id=orderdao的对象-->
+    <bean class="src.com.auto.orderService" id="orderService" autowire="byType"></bean>
+    <bean class="src.com.web.orderAction" id="action" autowire="byType"></bean>
+<!--    配置容器要扫描的包-->
+<!--    component-scan，指定对包下的类扫描-->
+<!--    要扫描的包，base-package-->
+    含义是当spring容器创建/初始化的时候，就会扫描src.com.wzx下的所有带注解的类
+<!--    @Contoller/service/Respository/Component,将类实例化，放到IOC容器中-->
+<!--    如果要加上子包,换上通配符*，src.com.wzx.*-->
+<!--    只扫描User打头的类-->
+    <context:component-scan base-package="src.com.wzx" resource-pattern="User*.class" use-default-filters="false">
+        <!--    排除子包某种类型的注解的类，有Monster的注解的类就排除-->
+        <context:exclude type="monster" expression="sr.com.wzx.Monster" />
+<!--        过滤只包含的，但一定要 use-default-filters=“false”-->
+        <context:include-filter type="monster" expression="sr.com.wzx.Monster"/>
+    </context:component-scan>
+
+
+</beans>

@@ -1,5 +1,9 @@
 package src_AOP.before_aop;
 
+import org.aopalliance.intercept.Invocation;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
 //返回一个代理对象
@@ -17,7 +21,15 @@ public class VehicleProxy {
         ClassLoader classLoader = target_vehicle.getClass().getClassLoader();
         //拿到接口信息，底层通过接口
         Class<?>[] interfaces = target_vehicle.getClass().getInterfaces();
-        Vehicle proxy = (Vehicle) Proxy.newProxyInstance(classLoader, interfaces, null);
-        return target_vehicle;
+        //创建匿名内部类
+        InvocationHandler invocationHandler = new InvocationHandler() {
+            @Override
+            public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                Object result = method.invoke(target_vehicle, args);
+                return null;
+            }
+        };
+        Vehicle proxy = (Vehicle) Proxy.newProxyInstance(classLoader, interfaces, invocationHandler);
+        return proxy;
     }
 }
