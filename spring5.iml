@@ -23,5 +23,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="spring-aop-5.3.8" level="project" />
+    <orderEntry type="library" name="com.springsource.net.sf.cglib-2.2.0" level="project" />
   </component>
 </module>
