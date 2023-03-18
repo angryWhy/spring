@@ -8,5 +8,12 @@
     <context:component-scan base-package="src.src_AOP.RealAop"/>
     <!--    开启基于注解的aop功能-->
     <aop:aspectj-autoproxy/>
-
+    <aop:config>
+<!--        先配切入点，再配切入对象-->
+        <aop:pointcut id="myCut" expression="execution(public float src.src_AOP.RealAop.NoCar.run())"/>
+        <aop:aspect ref="smartAnimalAspect" order="1" >
+            <aop:before method="fn" pointcut-ref="myCut"/>
+            <aop:after-returning method="fn2" pointcut-ref="myCut" returning="res"/>
+        </aop:aspect>
+    </aop:config>
 </beans>
