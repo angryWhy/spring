@@ -5,6 +5,7 @@
       <configuration>
         <fileset id="fileset" name="Beans" removed="false">
           <file>file://$MODULE_DIR$/src/resources/beans.xml</file>
+          <file>file://$MODULE_DIR$/src/resources/beans10.xml</file>
         </fileset>
         <fileset id="fileset2" name="Beans02" removed="false">
           <file>file://$MODULE_DIR$/src/resources/beans02.xml</file>
@@ -24,5 +25,6 @@
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="spring-aop-5.3.8" level="project" />
     <orderEntry type="library" name="com.springsource.net.sf.cglib-2.2.0" level="project" />
+    <orderEntry type="library" name="c3p0-0.9.1.2" level="project" />
   </component>
 </module>
