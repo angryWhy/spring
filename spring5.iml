@@ -6,6 +6,7 @@
         <fileset id="fileset" name="Beans" removed="false">
           <file>file://$MODULE_DIR$/src/resources/beans.xml</file>
           <file>file://$MODULE_DIR$/src/resources/beans10.xml</file>
+          <file>file://$MODULE_DIR$/src/resources/ioc_jdbc.xml</file>
         </fileset>
         <fileset id="fileset2" name="Beans02" removed="false">
           <file>file://$MODULE_DIR$/src/resources/beans02.xml</file>
