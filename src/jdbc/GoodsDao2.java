@@ -23,7 +23,7 @@ public class GoodsDao2 {
         Float price = jdbcTemplate.queryForObject(sql, Float.class, id);
         return price;
     }
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW,timeout = 2)
     public void updateBalance(Integer user_id,Float money){
         String sql = "UPDATE user_account SET money=? Where user_id=?";
         jdbcTemplate.update(sql, user_id, money);
